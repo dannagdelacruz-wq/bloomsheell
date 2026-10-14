@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bloomshell Cosmetics: maquillaje, cuidado facial y accesorios de belleza para uso personal, profesional y reventa.">
+  <title>Bloomshell Cosmetics | Maquillaje y belleza</title>
+
+  <style>
+    /* ========== 1. VARIABLES DE COLOR Y MEDIDAS ========== */
+    :root {
+      --rosa: #c2185b;          /* Rosa intenso (texto y enlaces, buen contraste sobre blanco) */
+      --rosa-vivo: #ec4899;     /* Rosa brillante (detalles decorativos) */
+      --rosa-pastel: #fde4ee;   /* Rosa pastel (fondos suaves) */
+      --rosa-claro: #fff5f9;    /* Rosa casi blanco */
+      --negro: #1a1a1a;
+      --blanco: #ffffff;
+      --gris: #4a4a4a;          /* Texto secundario */
+      --radio: 18px;
+      --sombra: 0 6px 20px rgba(194, 24, 91, 0.12);
+    }
+
+    /* ========== 2. ESTILOS BASE ========== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--negro);
+      background: var(--blanco);
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+    a { color: var(--rosa); }
+    img, svg { max-width: 100%; }
+
+    /* Foco visible para quien navega con teclado */
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--negro);
+      outline-offset: 3px;
+    }
+
+    /* Enlace para saltar directo al contenido (accesibilidad) */
+    .enlace-saltar {
+      position: absolute; left: -999px; top: 8px;
+      background: var(--negro); color: var(--blanco);
+      padding: 8px 14px; border-radius: 8px; z-index: 200;
+    }
+    .enlace-saltar:focus { left: 8px; }
+
+    /* Contenedor que centra el contenido */
+    .contenedor { width: min(1100px, 92%); margin-inline: auto; }
+
+    /* Secciones */
+    .seccion { padding: 72px 0; }
+    .seccion--rosa { background: var(--rosa-pastel); }
+    .seccion__titulo { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 10px; }
+    .seccion__intro { color: var(--gris); max-width: 60ch; margin-bottom: 36px; }
+
+    /* ========== 3. BOTONES ========== */
+    .boton {
+      display: inline-block;
+      padding: 13px 26px;
+      border-radius: 999px;
+      border: 2px solid var(--negro);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s, background .2s, color .2s;
+    }
+    .boton--principal { background: var(--negro); color: var(--blanco); }
+    .boton--principal:hover { background: var(--rosa); border-color: var(--rosa); transform: translateY(-2px); }
+    .boton--secundario { background: transparent; color: var(--negro); }
+    .boton--secundario:hover { background: var(--negro); color: var(--blanco); }
+
+    /* ========== 4. ENCABEZADO Y MENÚ ========== */
+    .encabezado {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--blanco);
+      border-bottom: 2px solid var(--rosa-pastel);
+    }
+    .encabezado__barra {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+      gap: 10px 24px; padding: 12px 0;
+    }
+    .logotipo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--negro);
+      font-family: Georgia, serif; font-size: 1.4rem; font-weight: 700;
+    }
+    .logotipo__icono {
+      display: grid; place-items: center;
+      width: 40px; height: 40px; border-radius: 50% 50% 50% 8px;
+      background: var(--rosa); color: var(--blanco); font-size: 1.2rem;
+    }
+    .logotipo small { display: block; font: 600 .7rem/1 "Segoe UI", sans-serif; color: var(--rosa); letter-spacing: .12em; }
+    .menu { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; }
+    .menu a {
+      display: block; padding: 8px 14px; border-radius: 999px;
+      text-decoration: none; color: var(--negro); font-weight: 600;
+    }
+    .menu a:hover { background: var(--rosa-pastel); color: var(--rosa); }
+
+    /* ========== 5. PORTADA (HERO) ========== */
+    .portada {
+      background: linear-gradient(135deg, var(--rosa-claro) 0%, var(--rosa-pastel) 100%);
+      padding: 80px 0;
+    }
+    .portada__contenido {
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      gap: 40px; align-items: center;
+    }
+    .portada h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); margin-bottom: 18px; }
+    .portada p { font-size: 1.15rem; color: var(--gris); max-width: 52ch; margin-bottom: 28px; }
+    .portada__botones { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Paleta decorativa hecha solo con CSS: parece una paleta de sombras */
+    .paleta {
+      background: var(--negro); border-radius: 28px; padding: 22px;
+      box-shadow: var(--sombra);
+    }
+    .paleta__rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .paleta__color { aspect-ratio: 1; border-radius: 50%; border: 3px solid #333; }
+    .paleta__nombre { color: var(--blanco); text-align: center; margin-top: 16px; font-family: Georgia, serif; font-size: 1.1rem; }
+
+    /* ========== 6. SOBRE NOSOTROS ========== */
+    .nosotros { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .nosotros p + p { margin-top: 14px; }
+    .cifras { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cifra {
+      background: var(--rosa-pastel); border-radius: var(--radio);
+      padding: 22px; text-align: center;
+    }
+    .cifra__icono { font-size: 2rem; }
+    .cifra__texto { font-weight: 700; }
+
+    /* ========== 7. TARJETAS (productos, ventajas, reventa) ========== */
+    .rejilla { display: grid; gap: 22px; }
+    .rejilla--productos { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .rejilla--ventajas  { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .rejilla--reventa   { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+    .tarjeta {
+      background: var(--blanco);
+      border: 2px solid var(--rosa-pastel);
+      border-radius: var(--radio);
+      padding: 26px;
+      box-shadow: var(--sombra);
+    }
+    .tarjeta__icono {
+      display: grid; place-items: center;
+      width: 56px; height: 56px; border-radius: 16px;
+      background: var(--rosa-pastel); font-size: 1.8rem; margin-bottom: 14px;
+    }
+    .tarjeta h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .tarjeta p { color: var(--gris); font-size: .97rem; }
+    .tarjeta--oscura { background: var(--negro); border-color: var(--negro); }
+    .tarjeta--oscura h3, .tarjeta--oscura p, .tarjeta--oscura li { color: var(--blanco); }
+    .tarjeta--oscura .tarjeta__icono { background: var(--rosa); }
+    .tarjeta ul { margin: 12px 0 0 20px; color: var(--gris); font-size: .95rem; }
+
+    /* ========== 8. CONTACTO Y FORMULARIO ========== */
+    .contacto { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .datos { list-style: none; margin-top: 20px; }
+    .datos li { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rosa-pastel); }
+    .aviso {
+      background: var(--blanco); border-left: 5px solid var(--rosa);
+      padding: 12px 16px; border-radius: 8px; margin-bottom: 18px; font-size: .95rem;
+    }
+    .formulario { background: var(--blanco); border-radius: var(--radio); padding: 26px; box-shadow: var(--sombra); }
+    .campo { margin-bottom: 16px; }
+    .campo label { display: block; font-weight: 700; margin-bottom: 6px; }
+    .campo input, .campo select, .campo textarea {
+      width: 100%; padding: 12px; font: inherit;
+      border: 2px solid #8a8a8a; border-radius: 10px; background: var(--blanco);
+    }
+    .mensaje-exito { margin-top: 14px; font-weight: 700; color: var(--rosa); }
+
+    /* ========== 9. PIE DE PÁGINA ========== */
+    .pie { background: var(--negro); color: var(--blanco); padding: 40px 0 24px; }
+    .pie__columnas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+    .pie a { color: #ffb3d1; }
+    .pie__enlaces { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    .pie__legal { margin-top: 24px; padding-top: 16px; border-top: 1px solid #444; font-size: .88rem; color: #d0d0d0; }
+
+    /* ========== 10. ADAPTACIÓN A TABLETAS Y CELULARES ========== */
+    @media (max-width: 800px) {
+      .portada__contenido, .nosotros, .contacto { grid-template-columns: 1fr; }
+      .seccion { padding: 52px 0; }
+      .encabezado__barra { justify-content: center; }
+      .menu { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .menu a { padding: 6px 10px; font-size: .92rem; }
+    }
+
+    /* Respeta a quienes prefieren menos animaciones */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .boton { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="enlace-saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ========== ENCABEZADO: logotipo + menú ========== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__barra">
+      <a class="logotipo" href="#inicio" aria-label="Bloomshell Cosmetics, ir al inicio">
+        <span class="logotipo__icono" aria-hidden="true">✿</span>
+        <span>Bloomshell <small>COSMETICS</small></span>
+      </a>
+
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#reventa">Reventa</a></li>
+          <li><a href="#ventajas">Ventajas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ========== PORTADA ========== -->
+    <section class="portada" id="inicio" aria-labelledby="titulo-portada">
+      <div class="contenedor portada__contenido">
+        <div>
+          <h1 id="titulo-portada">Tu belleza florece con Bloomshell</h1>
+          <p>Maquillaje, cuidado facial y accesorios para tu rutina diaria, tu trabajo como maquillador o tu negocio de reventa.</p>
+          <div class="portada__botones">
+            <a class="boton boton--principal" href="#productos">Ver productos</a>
+            <a class="boton boton--secundario" href="#reventa">Quiero revender</a>
+          </div>
+        </div>
+
+        <!-- Paleta decorativa (solo CSS, sin imágenes externas) -->
+        <div class="paleta" role="img" aria-label="Ilustración de una paleta de colores rosados">
+          <div class="paleta__rejilla">
+            <span class="paleta__color" style="background:#fde4ee"></span>
+            <span class="paleta__color" style="background:#f9a8cc"></span>
+            <span class="paleta__color" style="background:#ec4899"></span>
+            <span class="paleta__color" style="background:#c2185b"></span>
+            <span class="paleta__color" style="background:#ffffff"></span>
+            <span class="paleta__color" style="background:#6b0f35"></span>
+          </div>
+          <p class="paleta__nombre">Colección Bloom</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SOBRE LA EMPRESA ========== -->
+    <section class="seccion" id="nosotros" aria-labelledby="titulo-nosotros">
+      <div class="contenedor nosotros">
+        <div>
+          <h2 class="seccion__titulo" id="titulo-nosotros">Quiénes somos</h2>
+          <p>Bloomshell Cosmetics comercializa y distribuye productos cosméticos, maquillaje y accesorios de belleza para quienes disfrutan cuidarse y expresarse con color.</p>
+          <p>Trabajamos con jóvenes, adultos, maquilladores y emprendedores. Tanto si compras para ti como si quieres iniciar tu propio negocio de belleza, te acompañamos con productos variados y precios claros.</p>
+        </div>
+        <div class="cifras">
+          <div class="cifra"><div class="cifra__icono" aria-hidden="true">💄</div><div class="cifra__texto">Maquillaje completo</div></div>
+          <div class="cifra"><div class="cifra__icono" aria-hidden="true">🧴</div><div class="cifra__texto">Cuidado facial</div></div>
+          <div class="cifra"><div class="cifra__icono" aria-hidden="true">🖌️</div><div class="cifra__texto">Accesorios</div></div>
+          <div class="cifra"><div class="cifra__icono" aria-hidden="true">🛍️</div><div class="cifra__texto">Compra por mayor</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PRODUCTOS ========== -->
+    <section class="seccion seccion--rosa" id="productos" aria-labelledby="titulo-productos">
+      <div class="contenedor">
+        <h2 class="seccion__titulo" id="titulo-productos">Nuestros productos</h2>
+        <p class="seccion__intro">Todo lo que necesitas para un look completo, del rostro a los ojos y los labios.</p>
+
+        <div class="rejilla rejilla--productos">
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🫧</div>
+            <h3>Bases y correctores</h3>
+            <p>Cobertura ligera o alta en varios tonos para un acabado uniforme.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">☁️</div>
+            <h3>Polvos y rubores</h3>
+            <p>Sella tu maquillaje y dale un toque de color natural a tus mejillas.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">💋</div>
+            <h3>Labiales y brillos</h3>
+            <p>Acabados mate, cremoso y glossy en tonos rosados, nude y rojos.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">👁️</div>
+            <h3>Sombras y pestañinas</h3>
+            <p>Paletas versátiles y máscaras para dar volumen y definición a la mirada.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🧴</div>
+            <h3>Cuidado facial</h3>
+            <p>Productos básicos para limpiar, hidratar y preparar la piel antes de maquillar.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🖌️</div>
+            <h3>Brochas y esponjas</h3>
+            <p>Herramientas suaves y prácticas para aplicar y difuminar con precisión.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">👝</div>
+            <h3>Cosmetiqueras</h3>
+            <p>Organiza y transporta tu maquillaje en casa, de viaje o en tus citas de trabajo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== REVENTA ========== -->
+    <section class="seccion" id="reventa" aria-labelledby="titulo-reventa">
+      <div class="contenedor">
+        <h2 class="seccion__titulo" id="titulo-reventa">Compra para revender</h2>
+        <p class="seccion__intro">Alternativas pensadas para emprendedores, comerciantes y maquilladores que quieren ofrecer productos de belleza.</p>
+
+        <div class="rejilla rejilla--reventa">
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🌱</div>
+            <h3>Emprendedor inicial</h3>
+            <p>Para empezar con poca inversión.</p>
+            <ul>
+              <li>Paquetes de productos variados</li>
+              <li>Asesoría para elegir tus primeros artículos</li>
+            </ul>
+          </article>
+          <article class="tarjeta tarjeta--oscura">
+            <div class="tarjeta__icono" aria-hidden="true">📦</div>
+            <h3>Comerciante</h3>
+            <p>Para tiendas y vendedores frecuentes.</p>
+            <ul>
+              <li>Compra por mayor</li>
+              <li>Pedidos recurrentes</li>
+            </ul>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🎨</div>
+            <h3>Maquillador profesional</h3>
+            <p>Para quienes trabajan con clientes.</p>
+            <ul>
+              <li>Selección de tonos y herramientas</li>
+              <li>Cosmetiqueras y kits de trabajo</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== VENTAJAS COMPETITIVAS ========== -->
+    <section class="seccion seccion--rosa" id="ventajas" aria-labelledby="titulo-ventajas">
+      <div class="contenedor">
+        <h2 class="seccion__titulo" id="titulo-ventajas">Por qué elegirnos</h2>
+        <p class="seccion__intro">Lo que nos distingue como tu aliado de belleza.</p>
+
+        <div class="rejilla rejilla--ventajas">
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🎀</div>
+            <h3>Catálogo amplio</h3>
+            <p>Maquillaje, cuidado facial y accesorios en un solo lugar.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🤝</div>
+            <h3>Opciones para revender</h3>
+            <p>Condiciones de compra adaptadas a emprendedores y comerciantes.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">💬</div>
+            <h3>Atención cercana</h3>
+            <p>Te orientamos en tonos, productos y cantidades según tus necesidades.</p>
+          </article>
+          <article class="tarjeta">
+            <div class="tarjeta__icono" aria-hidden="true">🚚</div>
+            <h3>Distribución organizada</h3>
+            <p>Procesos claros para que tu pedido llegue completo y a tiempo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACTO ========== -->
+    <section class="seccion" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="contenedor contacto">
+        <div>
+          <h2 class="seccion__titulo" id="titulo-contacto">Contáctanos</h2>
+          <p>Cuéntanos qué buscas y te ayudaremos a elegir. Los siguientes datos son ficticios, de ejemplo.</p>
+          <ul class="datos">
+            <li><span aria-hidden="true">📍</span> Calle Ejemplo 123, Ciudad Ejemplo</li>
+            <li><span aria-hidden="true">📞</span> +00 000 000 0000</li>
+            <li><span aria-hidden="true">✉️</span> contacto@ejemplo.com</li>
+            <li><span aria-hidden="true">🕒</span> Lunes a sábado, 9:00 a. m. – 6:00 p. m.</li>
+          </ul>
+        </div>
+
+        <form class="formulario" id="formulario-contacto">
+          <p class="aviso"><strong>Formulario demostrativo:</strong> no envía información. Para recibir mensajes se necesita una integración adicional.</p>
+
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required autocomplete="name">
+          </div>
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required autocomplete="email">
+          </div>
+          <div class="campo">
+            <label for="interes">Me interesa</label>
+            <select id="interes" name="interes">
+              <option>Comprar para uso personal</option>
+              <option>Comprar para revender</option>
+              <option>Productos para maquilladores</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+          </div>
+          <button class="boton boton--principal" type="submit">Enviar (demostración)</button>
+          <p class="mensaje-exito" id="mensaje-exito" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== PIE DE PÁGINA ========== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div>
+          <strong style="font-family:Georgia,serif;font-size:1.3rem;">✿ Bloomshell Cosmetics</strong>
+          <p>Belleza para todos los días.</p>
+        </div>
+        <nav aria-label="Enlaces del pie de página">
+          <ul class="pie__enlaces">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#reventa">Reventa</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie__legal">© 2026 Bloomshell Cosmetics. Sitio de ejemplo con datos ficticios.</p>
+    </div>
+  </footer>
+
+  <!-- Script mínimo: solo muestra un mensaje; no envía datos a ningún sitio -->
+  <script>
+    document.getElementById("formulario-contacto").addEventListener("submit", function (evento) {
+      evento.preventDefault(); // Evita que la página se recargue
+      document.getElementById("mensaje-exito").textContent =
+        "Gracias. Esto es una demostración: tu mensaje no fue enviado.";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
