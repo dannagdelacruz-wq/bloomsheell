@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Bloomshell Cosmetics: maquillaje, cuidado facial y accesorios de belleza. Descubre nuestros productos y opciones para revendedores.">
+
+    <meta name="theme-color" content="#f8dce8">
+    <title>Bloomshell Cosmetics | Belleza a tu manera</title>
+
+    <style>
+        /* =========================================
+           1. CONFIGURACIÓN GENERAL Y COLORES
+        ========================================= */
+        :root {
+            --rosa: #d9578b;
+            --rosa-oscuro: #a82f63;
+            --rosa-pastel: #f9e4ed;
+            --rosa-claro: #fff5f9;
+            --blanco: #ffffff;
+            --negro: #21191e;
+            --gris: #756b71;
+            --borde: #f0dce5;
+            --sombra: 0 10px 30px rgba(112, 44, 75, 0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 95px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--blanco);
+            color: var(--negro);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        img,
+        svg {
+            max-width: 100%;
+        }
+
+        .contenedor {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+        .seccion {
+            padding: 85px 0;
+        }
+
+        .fondo-rosa {
+            background: var(--rosa-claro);
+        }
+
+        .etiqueta {
+            display: inline-block;
+            color: var(--rosa-oscuro);
+            background: var(--rosa-pastel);
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .titulo-seccion {
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            margin: 16px 0;
+        }
+
+        .texto-seccion {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--gris);
+        }
+
+        .encabezado-seccion {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .boton {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 23px;
+            border-radius: 30px;
+            border: 2px solid var(--rosa);
+            background: var(--rosa);
+            color: var(--blanco);
+            font-weight: 700;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background: var(--rosa-oscuro);
+            border-color: var(--rosa-oscuro);
+            transform: translateY(-2px);
+        }
+
+        .boton-secundario {
+            background: transparent;
+            color: var(--rosa-oscuro);
+        }
+
+        .boton-secundario:hover {
+            color: var(--blanco);
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #722044;
+            outline-offset: 4px;
+        }
+
+        /* =========================================
+           2. ENCABEZADO Y MENÚ DE NAVEGACIÓN
+        ========================================= */
+        .encabezado {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid var(--borde);
+        }
+
+        .barra-navegacion {
+            min-height: 78px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-simbolo {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: var(--rosa-pastel);
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .logo-texto {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-texto span {
+            display: block;
+            color: var(--rosa-oscuro);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            margin-top: 4px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 23px;
+            list-style: none;
+        }
+
+        .menu a {
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .menu a:hover {
+            color: var(--rosa-oscuro);
+        }
+
+        .menu .enlace-contacto {
+            padding: 10px 17px;
+            background: var(--rosa);
+            color: var(--blanco);
+            border-radius: 24px;
+        }
+
+        .menu .enlace-contacto:hover {
+            background: var(--rosa-oscuro);
+            color: var(--blanco);
+        }
+
+        /* =========================================
+           3. PORTADA PRINCIPAL
+        ========================================= */
+        .portada {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 85% 20%, #f3b8d0 0, transparent 28%),
+                linear-gradient(120deg, #fff5f9, #f9e4ed);
+        }
+
+        .portada-contenido {
+            min-height: 555px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 55px;
+            padding-top: 55px;
+            padding-bottom: 55px;
+        }
+
+        .portada h1 {
+            font-size: clamp(2.7rem, 6vw, 4.7rem);
+            line-height: 1.06;
+            letter-spacing: -2px;
+            margin: 20px 0;
+        }
+
+        .portada h1 span {
+            color: var(--rosa-oscuro);
+        }
+
+        .portada-descripcion {
+            max-width: 520px;
+            color: #66515b;
+            font-size: 1.08rem;
+            margin-bottom: 27px;
+        }
+
+        .botones-portada {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .portada-nota {
+            margin-top: 27px;
+            color: var(--gris);
+            font-size: 0.88rem;
+        }
+
+        .portada-visual {
+            min-height: 380px;
+            display: grid;
+            place-items: center;
+            position: relative;
+        }
+
+        .circulo-productos {
+            width: min(360px, 100%);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #f3b8d0, #fff5f9);
+            display: grid;
+            place-items: center;
+            border: 1px solid #efc3d6;
+            position: relative;
+        }
+
+        .maquillaje-central {
+            width: 175px;
+            height: 225px;
+            border-radius: 28px 28px 20px 20px;
+            background: linear-gradient(145deg, #292127, #5d3447);
+            box-shadow: 12px 20px 35px rgba(74, 30, 49, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            border: 5px solid #e9b6cb;
+        }
+
+        .maquillaje-central::before {
+            content: "";
+            position: absolute;
+            top: -28px;
+            width: 90px;
+            height: 28px;
+            border-radius: 7px 7px 2px 2px;
+            background: linear-gradient(90deg, #dca3bb, #f9e4ed, #dca3bb);
+        }
+
+        .maquillaje-central .flor {
+            font-size: 2.8rem;
+        }
+
+        .maquillaje-central strong {
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .maquillaje-central small {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+        }
+
+        .burbuja {
+            position: absolute;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--blanco);
+            box-shadow: var(--sombra);
+        }
+
+        .burbuja-uno {
+            width: 85px;
+            height: 85px;
+            top: 15px;
+            left: 8px;
+            font-size: 2.3rem;
+        }
+
+        .burbuja-dos {
+            width: 95px;
+            height: 95px;
+            right: -5px;
+            top: 80px;
+            font-size: 2.6rem;
+        }
+
+        .burbuja-tres {
+            width: 80px;
+            height: 80px;
+            left: 20px;
+            bottom: 20px;
+            font-size: 2.2rem;
+        }
+
+        .burbuja-cuatro {
+            width: 75px;
+            height: 75px;
+            right: 18px;
+            bottom: 8px;
+            font-size: 2rem;
+        }
+
+        /* =========================================
+           4. BENEFICIOS DESTACADOS
+        ========================================= */
+        .beneficios {
+            border-bottom: 1px solid var(--borde);
+            background: var(--blanco);
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding-top: 27px;
+            padding-bottom: 27px;
+        }
+
+        .beneficio {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .beneficio-icono {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: var(--rosa-pastel);
+            font-size: 1.35rem;
+        }
+
+        .beneficio strong {
+            display: block;
+            font-size: 0.92rem;
+        }
+
+        .beneficio p {
+            color: var(--gris);
+            font-size: 0.78rem;
+        }
+
+        /* =========================================
+           5. SECCIÓN SOBRE NOSOTROS
+        ========================================= */
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .sobre-ilustracion {
+            min-height: 340px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #f8dce8, #fceff5);
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sobre-circulo {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: var(--rosa);
+            display: grid;
+            place-items: center;
+            font-size: 7rem;
+            box-shadow: 0 20px 40px rgba(168, 47, 99, 0.17);
+        }
+
+        .sobre-sello {
+            position: absolute;
+            bottom: 20px;
+            right: 18px;
+            padding: 12px 17px;
+            background: var(--blanco);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: var(--sombra);
+        }
+
+        .sobre-texto p {
+            color: var(--gris);
+            margin: 15px 0;
+        }
+
+        .lista-valores {
+            list-style: none;
+            margin: 22px 0 27px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .lista-valores li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .lista-valores li span {
+            color: var(--rosa-oscuro);
+            font-weight: 800;
+        }
+
+        /* =========================================
+           6. TARJETAS DE PRODUCTOS
+        ========================================= */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .producto {
+            border: 1px solid var(--borde);
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--blanco);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .producto:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--sombra);
+        }
+
+        .producto-visual {
+            min-height: 190px;
+            display: grid;
+            place-items: center;
+            position: relative;
+            background: linear-gradient(145deg, #fff2f7, #f6d9e6);
+        }
+
+        .producto-visual span {
+            font-size: 5rem;
+            filter: drop-shadow(0 10px 7px rgba(65, 32, 47, 0.12));
+        }
+
+        .producto-etiqueta {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            background: var(--blanco);
+            color: var(--rosa-oscuro);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .producto-info {
+            padding: 19px;
+        }
+
+        .producto-info h3 {
+            font-size: 1.04rem;
+            margin-bottom: 8px;
+        }
+
+        .producto-info p {
+            font-size: 0.87rem;
+            color: var(--gris);
+            min-height: 65px;
+        }
+
+        .producto-link {
+            display: inline-block;
+            color: var(--rosa-oscuro);
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-top: 14px;
+        }
+
+        .producto-link:hover {
+            text-decoration: underline;
+        }
+
+        .nota-catalogo {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.84rem;
+            color: var(--gris);
+        }
+
+        /* =========================================
+           7. VENTAJAS COMPETITIVAS
+        ========================================= */
+        .ventajas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .ventaja {
+            padding: 30px 25px;
+            background: var(--blanco);
+            border: 1px solid var(--borde);
+            border-radius: 20px;
+            transition: 0.25s ease;
+        }
+
+        .ventaja:hover {
+            border-color: var(--rosa);
+            transform: translateY(-4px);
+        }
+
+        .ventaja-icono {
+            width: 57px;
+            height: 57px;
+            display: grid;
+            place-items: center;
+            border-radius: 17px;
+            background: var(--rosa-pastel);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .ventaja h3 {
+            margin-bottom: 10px;
+            font-size: 1.12rem;
+        }
+
+        .ventaja p {
+            color: var(--gris);
+            font-size: 0.92rem;
+        }
+
+        /* =========================================
+           8. SECCIÓN PARA REVENDEDORES
+        ========================================= */
+        .revendedores {
+            padding: 65px 0;
+        }
+
+        .revendedores-panel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: linear-gradient(115deg, #a82f63, #d9578b);
+            color: var(--blanco);
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .revendedores-panel::after {
+            content: "✿";
+            position: absolute;
+            right: 150px;
+            top: -65px;
+            font-size: 230px;
+            color: rgba(255, 255, 255, 0.09);
+            pointer-events: none;
+        }
+
+        .revendedores-panel .etiqueta {
+            background: rgba(255, 255, 255, 0.16);
+            color: var(--blanco);
+        }
+
+        .revendedores-panel h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            margin: 16px 0;
+            max-width: 620px;
+        }
+
+        .revendedores-panel p {
+            color: #ffedf5;
+            max-width: 620px;
+        }
+
+        .revendedores-panel .boton {
+            background: var(--blanco);
+            color: var(--rosa-oscuro);
+            border-color: var(--blanco);
+            white-space: nowrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .revendedores-panel .boton:hover {
+            background: var(--rosa-pastel);
+        }
+
+        /* =========================================
+           9. CONTACTO Y FORMULARIO DEMOSTRATIVO
+        ========================================= */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 55px;
+            align-items: start;
+        }
+
+        .contacto-intro p {
+            color: var(--gris);
+            margin: 15px 0 25px;
+        }
+
+        .contacto-dato {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            margin: 20px 0;
+        }
+
+        .contacto-dato-icono {
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--rosa-pastel);
+            font-size: 1.2rem;
+        }
+
+        .contacto-dato strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .contacto-dato p {
+            color: var(--gris);
+            margin: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .formulario {
+            padding: 30px;
+            border: 1px solid var(--borde);
+            border-radius: 22px;
+            background: var(--blanco);
+            box-shadow: var(--sombra);
+        }
+
+        .formulario h3 {
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+        }
+
+        .formulario-descripcion {
+            color: var(--gris);
+            font-size: 0.86rem;
+            margin-bottom: 23px;
+        }
+
+        .campo {
+            margin-bottom: 18px;
+        }
+
+        .campo label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .campo input,
+        .campo textarea,
+        .campo select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dbcbd2;
+            border-radius: 10px;
+            color: var(--negro);
+            background: #fffafd;
+        }
+
+        .campo textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .campo input:focus,
+        .campo textarea:focus,
+        .campo select:focus {
+            border-color: var(--rosa-oscuro);
+            outline: 2px solid #f3c3d7;
+        }
+
+        .aviso-formulario {
+            color: var(--gris);
+            font-size: 0.78rem;
+            margin-top: 15px;
+        }
+
+        /* =========================================
+           10. PIE DE PÁGINA
+        ========================================= */
+        .pie-pagina {
+            background: #21191e;
+            color: var(--blanco);
+            padding: 45px 0 20px;
+        }
+
+        .pie-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr 1fr;
+            gap: 40px;
+            padding-bottom: 32px;
+        }
+
+        .pie-pagina .logo-texto {
+            color: var(--blanco);
+        }
+
+        .pie-descripcion {
+            color: #d5c5cd;
+            font-size: 0.88rem;
+            margin-top: 17px;
+            max-width: 350px;
+        }
+
+        .pie-pagina h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .pie-enlaces {
+            list-style: none;
+            display: grid;
+            gap: 9px;
+        }
+
+        .pie-enlaces a,
+        .pie-contacto {
+            color: #d5c5cd;
+            font-size: 0.87rem;
+        }
+
+        .pie-enlaces a:hover {
+            color: #f3b8d0;
+        }
+
+        .pie-contacto p {
+            margin-bottom: 9px;
+            overflow-wrap: anywhere;
+        }
+
+        .pie-inferior {
+            border-top: 1px solid #493640;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: #d5c5cd;
+            font-size: 0.8rem;
+        }
+
+        /* =========================================
+           11. DISEÑO ADAPTABLE PARA TABLETAS
+        ========================================= */
+        @media (max-width: 900px) {
+            .barra-navegacion {
+                padding: 14px 0;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .menu {
+                gap: 13px 20px;
+            }
+
+            .portada-contenido {
+                grid-template-columns: 1fr 0.8fr;
+                gap: 20px;
+            }
+
+            .portada-visual {
+                min-height: 300px;
+            }
+
+            .circulo-productos {
+                width: 280px;
+            }
+
+            .maquillaje-central {
+                transform: scale(0.85);
+            }
+
+            .beneficios-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .productos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sobre-grid {
+                gap: 35px;
+            }
+
+            .revendedores-panel {
+                grid-template-columns: 1fr;
+                padding: 38px;
+            }
+
+            .revendedores-panel .boton {
+                justify-self: start;
+            }
+        }
+
+        /* =========================================
+           12. DISEÑO ADAPTABLE PARA CELULARES
+        ========================================= */
+        @media (max-width: 600px) {
+            .contenedor {
+                width: 92%;
+            }
+
+            .seccion {
+                padding: 60px 0;
+            }
+
+            .barra-navegacion {
+                align-items: center;
+            }
+
+            .menu {
+                width: 100%;
+                justify-content: center;
+                gap: 10px 16px;
+            }
+
+            .menu a {
+                font-size: 0.82rem;
+            }
+
+            .menu .enlace-contacto {
+                padding: 7px 12px;
+            }
+
+            .portada-contenido {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 50px;
+                gap: 25px;
+            }
+
+            .portada h1 {
+                letter-spacing: -1px;
+            }
+
+            .portada-descripcion {
+                font-size: 1rem;
+            }
+
+            .botones-portada {
+                justify-content: center;
+            }
+
+            .portada-nota {
+                margin-top: 20px;
+            }
+
+            .portada-visual {
+                min-height: 310px;
+            }
+
+            .circulo-productos {
+                width: 265px;
+            }
+
+            .burbuja-uno {
+                width: 65px;
+                height: 65px;
+                left: -3px;
+            }
+
+            .burbuja-dos {
+                width: 72px;
+                height: 72px;
+                right: -4px;
+            }
+
+            .burbuja-tres {
+                width: 65px;
+                height: 65px;
+                left: 0;
+            }
+
+            .burbuja-cuatro {
+                width: 62px;
+                height: 62px;
+                right: 0;
+            }
+
+            .beneficios-grid {
+                gap: 22px 12px;
+            }
+
+            .beneficio {
+                align-items: flex-start;
+                gap: 9px;
+            }
+
+            .beneficio-icono {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+
+            .beneficio strong {
+                font-size: 0.82rem;
+            }
+
+            .beneficio p {
+                font-size: 0.73rem;
+            }
+
+            .sobre-grid,
+            .contacto-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .sobre-ilustracion {
+                min-height: 270px;
+            }
+
+            .sobre-circulo {
+                width: 185px;
+                height: 185px;
+                font-size: 5.5rem;
+            }
+
+            .productos-grid {
+                gap: 13px;
+            }
+
+            .producto-visual {
+                min-height: 145px;
+            }
+
+            .producto-visual span {
+                font-size: 3.8rem;
+            }
+
+            .producto-info {
+                padding: 14px;
+            }
+
+            .producto-info h3 {
+                font-size: 0.95rem;
+            }
+
+            .producto-info p {
+                font-size: 0.81rem;
+                min-height: 85px;
+            }
+
+            .ventajas-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .ventaja {
+                padding: 23px;
+            }
+
+            .revendedores-panel {
+                padding: 30px 22px;
+            }
+
+            .revendedores-panel .boton {
+                white-space: normal;
+            }
+
+            .formulario {
+                padding: 22px 17px;
+            }
+
+            .pie-grid {
+                grid-template-columns: 1fr;
+                gap: 27px;
+            }
+
+            .pie-inferior {
+                flex-direction: column;
+            }
+        }
+
+        /* Respeta la preferencia de movimiento reducido */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO: LOGOTIPO Y MENÚ -->
+    <header class="encabezado">
+        <div class="contenedor barra-navegacion">
+
+            <a class="logo" href="#inicio" aria-label="Bloomshell Cosmetics, ir al inicio">
+                <span class="logo-simbolo" aria-hidden="true">🌸</span>
+                <span class="logo-texto">
+                    BLOOMSHELL
+                    <span>COSMETICS</span>
+                </span>
+            </a>
+
+            <nav aria-label="Navegación principal">
+                <ul class="menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#ventajas">Ventajas</a></li>
+                    <li><a href="#revendedores">Revendedores</a></li>
+                    <li><a class="enlace-contacto" href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- PORTADA PRINCIPAL -->
+        <section class="portada" id="inicio">
+            <div class="contenedor portada-contenido">
+
+                <div class="portada-texto">
+                    <span class="etiqueta">Tu belleza, tu esencia</span>
+
+                    <h1>
+                        Brilla con tu
+                        <span>propio estilo.</span>
+                    </h1>
+
+                    <p class="portada-descripcion">
+                        Descubre un mundo de maquillaje, cuidado facial
+                        y accesorios de belleza pensado para resaltar
+                        lo mejor de ti.
+                    </p>
+
+                    <div class="botones-portada">
+                        <a href="#productos" class="boton">
+                            Explorar productos <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a href="#nosotros" class="boton boton-secundario">
+                            Conócenos
+                        </a>
+                    </div>
+
+                    <p class="portada-nota">
+                        ✨ Belleza, creatividad y confianza en cada detalle.
+                    </p>
+                </div>
+
+                <!-- Ilustración decorativa realizada con CSS -->
+                <div class="portada-visual" aria-label="Ilustración decorativa de productos de maquillaje">
+                    <div class="circulo-productos">
+
+                        <div class="maquillaje-central" aria-hidden="true">
+                            <span class="flor">🌸</span>
+                            <strong>BLOOMSHELL</strong>
+                            <small>COSMETICS</small>
+                        </div>
+
+                        <div class="burbuja burbuja-uno" aria-hidden="true">💄</div>
+                        <div class="burbuja burbuja-dos" aria-hidden="true">🪞</div>
+                        <div class="burbuja burbuja-tres" aria-hidden="true">🧴</div>
+                        <div class="burbuja burbuja-cuatro" aria-hidden="true">✨</div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BENEFICIOS DESTACADOS -->
+        <section class="beneficios" aria-label="Beneficios de la empresa">
+            <div class="contenedor beneficios-grid">
+
+                <div class="beneficio">
+                    <span class="beneficio-icono" aria-hidden="true">💋</span>
+                    <div>
+                        <strong>Variedad de productos</strong>
+                        <p>Opciones para cada estilo.</p>
+                    </div>
+                </div>
+
+                <div class="beneficio">
+                    <span class="beneficio-icono" aria-hidden="true">💗</span>
+                    <div>
+                        <strong>Atención cercana</strong>
+                        <p>Orientación para elegir.</p>
+                    </div>
+                </div>
+
+                <div class="beneficio">
+                    <span class="beneficio-icono" aria-hidden="true">🛍️</span>
+                    <div>
+                        <strong>Opciones para emprender</strong>
+                        <p>Alternativas para revender.</p>
+                    </div>
+                </div>
+
+                <div class="beneficio">
+                    <span class="beneficio-icono" aria-hidden="true">🌷</span>
+                    <div>
+                        <strong>Belleza y cuidado</strong>
+                        <p>Productos para tu rutina.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PRESENTACIÓN DE LA EMPRESA -->
+        <section class="seccion" id="nosotros">
+            <div class="contenedor sobre-grid">
+
+                <div class="sobre-ilustracion" aria-hidden="true">
+                    <div class="sobre-circulo">🌷</div>
+                    <div class="sobre-sello">Belleza que inspira ✨</div>
+                </div>
+
+                <div class="sobre-texto">
+                    <span class="etiqueta">Conoce nuestra esencia</span>
+
+                    <h2 class="titulo-seccion">
+                        Somos Bloomshell Cosmetics
+                    </h2>
+
+                    <p>
+                        Somos una propuesta empresarial enfocada en la
+                        comercialización y distribución de productos
+                        cosméticos, maquillaje y accesorios de belleza.
+                        Queremos acercar a nuestros clientes a un universo
+                        de color, expresión y cuidado personal.
+                    </p>
+
+                    <p>
+                        Nuestra propuesta está dirigida a quienes disfrutan
+                        experimentar con el maquillaje, a profesionales del
+                        sector y a emprendedores que desean desarrollar su
+                        propio negocio de productos de belleza.
+                    </p>
+
+                    <ul class="lista-valores">
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Variedad para diferentes gustos y necesidades.
+                        </li>
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Alternativas para consumidores y revendedores.
+                        </li>
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Una experiencia de compra clara y agradable.
+                        </li>
+                    </ul>
+
+                    <a href="#contacto" class="boton">
+                        Hablemos de belleza
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CATÁLOGO DE PRODUCTOS -->
+        <section class="seccion fondo-rosa" id="productos">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion">
+                    <span class="etiqueta">Nuestro catálogo</span>
+                    <h2 class="titulo-seccion">
+                        Encuentra tus favoritos
+                    </h2>
+                    <p class="texto-seccion">
+                        Explora nuestras principales categorías de
+                        maquillaje, cuidado facial y accesorios.
+                        Hay opciones para completar tu rutina y expresar
+                        tu creatividad.
+                    </p>
+                </div>
+
+                <div class="productos-grid">
+
+                    <!-- Producto 1 -->
+                    <article class="producto">
+                        <div class="producto-visual">
+                            <span aria-hidden="true">🧴</span>
+                            <span class="producto-etiqueta">Maquillaje</span>
+                        </div>
+
+                        <div class="producto-info">
+                            <h3>Rostro perfecto</h3>
+                            <p>
+                                Bases, correctores, polvos y rubores
+                                para crear diferentes acabados.
+                            </p>
+                            <a href="#contacto" class="producto-link">
+                                Consultar productos →
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Producto 2 -->
+                    <article class="producto">
+                        <div class="producto-visual">
+                            <span aria-hidden="true">💄</span>
+                            <span class="producto-etiqueta">Color</span>
+                        </div>
+
+                        <div class="producto-info">
+                            <h3>Labios irresistibles</h3>
+                            <p>
+                                Labiales y brillos para complementar
+                                tu maquillaje y destacar tu estilo.
+                            </p>
+                            <a href="#contacto" class="producto-link">
+                                Consultar productos →
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Producto 3 -->
+                    <article class="producto">
+                        <div class="producto-visual">
+                            <span aria-hidden="true">🪞</span>
+                            <span class="producto-etiqueta">Cuidado facial</span>
+                        </div>
+
+                        <div class="producto-info">
+                            <h3>Rutina de cuidado</h3>
+                            <p>
+                                Alternativas para complementar tu rutina
+                                de cuidado y limpieza facial.
+                            </p>
+                            <a href="#contacto" class="producto-link">
+                                Consultar productos →
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Producto 4 -->
+                    <article class="producto">
+                        <div class="producto-visual">
+                            <span aria-hidden="true">🖌️</span>
+                            <span class="producto-etiqueta">Accesorios</span>
+                        </div>
+
+                        <div class="producto-info">
+                            <h3>Herramientas de belleza</h3>
+                            <p>
+                                Brochas, esponjas, cosmetiqueras y
+                                accesorios para tu colección.
+                            </p>
+                            <a href="#contacto" class="producto-link">
+                                Consultar productos →
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <p class="nota-catalogo">
+                    Nota: las ilustraciones son decorativas. Las referencias,
+                    existencias y características de los productos deben
+                    confirmarse directamente con la empresa.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- VENTAJAS COMPETITIVAS -->
+        <section class="seccion" id="ventajas">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion">
+                    <span class="etiqueta">¿Por qué elegirnos?</span>
+                    <h2 class="titulo-seccion">
+                        Mucho más que maquillaje
+                    </h2>
+                    <p class="texto-seccion">
+                        Una propuesta que busca combinar variedad,
+                        acompañamiento y oportunidades para diferentes
+                        perfiles de clientes.
+                    </p>
+                </div>
+
+                <div class="ventajas-grid">
+
+                    <article class="ventaja">
+                        <div class="ventaja-icono" aria-hidden="true">🎨</div>
+                        <h3>Variedad para expresarte</h3>
+                        <p>
+                            Diferentes categorías para crear looks,
+                            experimentar con colores y encontrar
+                            productos que se adapten a tus preferencias.
+                        </p>
+                    </article>
+
+                    <article class="ventaja">
+                        <div class="ventaja-icono" aria-hidden="true">🤍</div>
+                        <h3>Orientación personalizada</h3>
+                        <p>
+                            Un espacio para resolver inquietudes sobre
+                            las categorías disponibles y conocer las
+                            alternativas que mejor se ajusten a tus intereses.
+                        </p>
+                    </article>
+
+                    <article class="ventaja">
+                        <div class="ventaja-icono" aria-hidden="true">📈</div>
+                        <h3>Visión emprendedora</h3>
+                        <p>
+                            Alternativas comerciales para personas que
+                            buscan explorar la reventa de productos
+                            cosméticos y ampliar sus oportunidades de negocio.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN PARA EMPRENDEDORES Y REVENDEDORES -->
+        <section class="revendedores" id="revendedores">
+            <div class="contenedor">
+                <div class="revendedores-panel">
+
+                    <div>
+                        <span class="etiqueta">Crece con nosotros</span>
+
+                        <h2>
+                            ¿Quieres emprender en el mundo de la belleza?
+                        </h2>
+
+                        <p>
+                            Conoce nuestras alternativas de compra para
+                            revendedores y explora cómo desarrollar una
+                            propuesta comercial alrededor de los productos
+                            de maquillaje y cuidado personal.
+                        </p>
+                    </div>
+
+                    <a href="#contacto" class="boton">
+                        Consultar opciones <span aria-hidden="true">→</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section class="seccion fondo-rosa" id="contacto">
+            <div class="contenedor contacto-grid">
+
+                <div class="contacto-intro">
+                    <span class="etiqueta">Estamos para ayudarte</span>
+
+                    <h2 class="titulo-seccion">
+                        Hablemos de belleza
+                    </h2>
+
+                    <p>
+                        ¿Buscas un producto, quieres conocer nuestras
+                        categorías o te interesa revender cosméticos?
+                        Este espacio está diseñado para que puedas
+                        preparar tu consulta.
+                    </p>
+
+                    <div class="contacto-dato">
+                        <span class="contacto-dato-icono" aria-hidden="true">✉️</span>
+                        <div>
+                            <strong>Correo electrónico</strong>
+                            <p>contacto@bloomshell.example</p>
+                        </div>
+                    </div>
+
+                    <div class="contacto-dato">
+                        <span class="contacto-dato-icono" aria-hidden="true">📍</span>
+                        <div>
+                            <strong>Ubicación</strong>
+                            <p>Información comercial por definir.</p>
+                        </div>
+                    </div>
+
+                    <div class="contacto-dato">
+                        <span class="contacto-dato-icono" aria-hidden="true">🛍️</span>
+                        <div>
+                            <strong>Ventas y distribución</strong>
+                            <p>Consultas sobre productos y reventa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario visual de demostración -->
+                <div class="formulario">
+                    <h3>Envíanos tu consulta</h3>
+
+                    <p class="formulario-descripcion">
+                        Completa los campos para preparar tu mensaje.
+                    </p>
+
+                    <form action="#contacto" method="get"
+                          onsubmit="return false;">
+
+                        <div class="campo">
+                            <label for="nombre">Nombre</label>
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                placeholder="Escribe tu nombre"
+                                autocomplete="name"
+                                required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="correo">Correo electrónico</label>
+                            <input
+                                type="email"
+                                id="correo"
+                                name="correo"
+                                placeholder="nombre@ejemplo.com"
+                                autocomplete="email"
+                                required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="interes">¿Qué te interesa?</label>
+                            <select id="interes" name="interes" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="maquillaje">Maquillaje</option>
+                                <option value="cuidado-facial">Cuidado facial</option>
+                                <option value="accesorios">Accesorios de belleza</option>
+                                <option value="reventa">Compra para reventa</option>
+                                <option value="otro">Otra consulta</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label for="mensaje">Tu mensaje</label>
+                            <textarea
+                                id="mensaje"
+                                name="mensaje"
+                                placeholder="Cuéntanos qué producto buscas..."
+                                required></textarea>
+                        </div>
+
+                        <button class="boton" type="submit">
+                            Preparar consulta
+                        </button>
+
+                        <p class="aviso-formulario">
+                            Formulario demostrativo: no envía ni almacena
+                            información. Para recibir mensajes reales,
+                            se necesita integrar un servicio de envío o
+                            un sistema de procesamiento adicional.
+                        </p>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie-pagina">
+        <div class="contenedor">
+
+            <div class="pie-grid">
+
+                <div>
+                    <a class="logo" href="#inicio">
+                        <span class="logo-simbolo" aria-hidden="true">🌸</span>
+                        <span class="logo-texto">
+                            BLOOMSHELL
+                            <span>COSMETICS</span>
+                        </span>
+                    </a>
+
+                    <p class="pie-descripcion">
+                        Maquillaje, cuidado facial y accesorios de belleza
+                        para quienes desean expresar su estilo y descubrir
+                        nuevas oportunidades en el sector cosmético.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Explora</h3>
+                    <ul class="pie-enlaces">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Sobre nosotros</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#ventajas">Ventajas</a></li>
+                        <li><a href="#revendedores">Revendedores</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="pie-contacto">
+                    <h3>Información comercial</h3>
+                    <p>Correo: contacto@bloomshell.example</p>
+                    <p>Ubicación: por definir</p>
+                    <p>Atención a clientes y revendedores.</p>
+                </div>
+
+            </div>
+
+            <div class="pie-inferior">
+                <p>
+                    &copy; <span id="anio">2026</span>
+                    Bloomshell Cosmetics. Todos los derechos reservados.
+                </p>
+
+                <p>Un espacio para la belleza, el color y la creatividad.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>
